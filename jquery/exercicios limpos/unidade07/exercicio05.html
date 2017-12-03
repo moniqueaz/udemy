@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Curso jQuery Fundamental</title>
+        <style>
+            #principal{
+                position: absolute;
+                height: 200px;
+                width: 2000px;
+                clip: rect(0 200px 200px 0);
+            }
+			#janela { 
+                position: relative;
+                top: 0;
+                left: 0; 
+                height:200px; 
+                background-color:#069;
+            }
+            #janela img {
+                float: left;
+            }
+		</style>
+        
+        <script src="jquery-3.2.1.min.js"></script>       
+        <script>
+			$( function(e) {
+
+                const janela = $('#janela');
+                const img = $('#janela img');
+                let limite = img.length * img.width() * -1;
+
+                janela.append('<img>');
+                $('#janela img:last').attr('src', 'imagens/foto1.jpg');
+
+                $('html').click(setInterval(() => {
+                    janela.animate({left:"-=200"}, 1000, () => {
+                       // console.log(janela.position().left);
+                       //console.log(limite);
+                        if(janela.position().left === limite){
+                            janela.css('left', 0);
+                        }
+                    })
+                }, 500));
+			});	
+		</script>        
+    </head>
+
+    <body>
+        <div id="principal">
+            <div id="janela">
+                <img src="imagens/foto1.jpg" alt="">
+                <img src="imagens/foto2.jpg" alt="">
+                <img src="imagens/foto3.jpg" alt="">
+                <img src="imagens/foto4.jpg" alt="">
+                <img src="imagens/foto5.jpg" alt="">
+            </div>
+        </div>
+    </body>
+
+</html>
